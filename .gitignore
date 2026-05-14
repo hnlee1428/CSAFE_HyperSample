@@ -1,0 +1,27 @@
+# Node / Electron
+node_modules/
+npm-debug.log*
+
+# Electron packaged output
+out/
+.DS_Store
+dist/
+make/
+
+# Build folders
+build/
+cmake-build-*/
+backed-gin/
+
+# Logs
+*.log
+
+# Temporary/cache
+.cache/
+node_modules/
+out/
+build/
+.DS_Store
+
+*.dmg
+*.app
