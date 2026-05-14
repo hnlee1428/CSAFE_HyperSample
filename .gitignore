@@ -3,10 +3,10 @@ node_modules/
 npm-debug.log*
 
 # Electron packaged output
-out/
+#out/
 .DS_Store
 dist/
-make/
+#make/
 
 # Build folders
 build/
@@ -18,9 +18,6 @@ backed-gin/
 
 # Temporary/cache
 .cache/
-node_modules/
-out/
-build/
 .DS_Store
 
 *.dmg
