@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inference & Sampling for Seized Drug Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1><img src="CSAFE_new_logo.png" alt="Logo" class="logo">Inference & Sampling for Seized Drug Analysis</h1>
+    
+    </header>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="inference">Population Inference</button>
+      <button class="tab-btn" data-tab="table">Sample Size (n₀) Calculator</button>
+      <button class="tab-btn" data-tab="plot">Achieved Confidence Analysis</button>
+    </div>
+
+    <div class="app-layout">
+      <aside class="sidebar">
+        <h2 id="panel-title">User's Inputs</h2>
+
+        <div id="controls-inference" class="control-group">
+          <label>
+            Choose confidence level
+            <select id="inf_alpha">
+              <option value="0.01">99%</option>
+              <option value="0.05">95%</option>
+            </select>
+          </label>
+
+          <label>
+            Population size (N)
+            <input id="inf_N" type="number" value="1000" min="5" step="1" />
+          </label>
+
+          <label>
+            Sample size (n)
+            <input id="inf_n" type="number" value="40" min="5" step="1" />
+          </label>
+
+          <label>
+            Number of negatives in sample (x)
+            <input id="inf_x" type="number" value="0" min="0" step="1" />
+          </label>
+
+          <button id="run-inference-btn" class="primary-btn">Get results</button>
+        </div>
+
+        <div id="controls-plot" class="control-group hidden">
+          <label>
+            Population size (N)
+            <input id="plot_N" type="number" value="1000" min="5" step="1" />
+          </label>
+
+          <label>
+            Maximum acceptable negative proportion (q) for population
+            <input id="plot_q" type="number" value="0.1" min="0" max="1" step="0.01" />
+          </label>
+
+          <label>
+            Hypothetical upper bound on # of negatives in a potential sample (x₀)
+            <input id="plot_m" type="number" value="0" min="0" step="1" />
+          </label>
+
+          <button id="run-plot-btn" class="primary-btn">Get results</button>
+        </div>
+
+        <div id="controls-table" class="control-group hidden">
+          <label>
+            Choose confidence level
+            <select id="tbl_alpha">
+              <option value="0.01">99%</option>
+              <option value="0.05">95%</option>
+            </select>
+          </label>
+
+          <label>
+            Population size (N)
+            <input id="tbl_N" type="number" value="1000" min="5" step="1" />
+          </label>
+
+          <label>
+            Maximum acceptable negative proportion (q) for population
+            <input id="tbl_q" type="number" value="0.1" min="0" max="1" step="0.01" />
+          </label>
+          
+          <label>
+          Range of hypothetical upper bound on # of negatives in a potential sample (x₀)
+          </label>  
+          <label>
+            Minimum of x₀
+            <input id="tbl_m_min" type="number" value="0" min="0" step="1" />
+          </label>
+
+          <label>
+            Maximum of x₀
+            <input id="tbl_m_max" type="number" value="2" min="0" step="1" />
+          </label>
+
+          <button id="run-table-btn" class="primary-btn">Get results</button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <section id="output-inference" class="output-section">
+          <div class="section-card">
+            <h3>Description</h3>
+            <div id="descriptionBox" class="description-card"></div>
+            <h3>Inference Summary</h3>
+            <div id="inference_result" class="result-box">
+              <p class="muted">Enter values on the left and click <strong>Get results</strong>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="output-plot" class="output-section hidden">
+          <div class="section-card">
+          <h3>Description</h3> 
+          <div id="descriptionBoxPlot" class="description-card"></div>
+            <h3>Confidence Plot</h3>
+            <div id="plot_status" class="status-line muted"></div>
+            <div id="plot_area" class="plot-box">
+            <p class="muted">Enter values on the left and click <strong>Get results</strong>.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="output-table" class="output-section hidden">
+          <div class="section-card">
+          <h3>Description</h3>
+          <div id="descriptionBoxTable" class="description-card"></div>
+            <h3>Table for n₀</h3>
+            <div id="table_result" class="table-wrap">
+              <p class="muted">Set the range and click <strong>Get results</strong>.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
